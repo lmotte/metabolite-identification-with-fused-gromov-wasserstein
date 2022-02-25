@@ -7,7 +7,7 @@ try:
     method = 'finger'
 except ModuleNotFoundError:
     import sys
-    sys.path.insert(0, '/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite')
+    sys.path.insert(0, '/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein')
     import numpy as np
     from time import time
     from train_val import exp_finger, exp_gk, exp_gw_onehot, exp_gw_fine, exp_gw_diffuse
@@ -18,7 +18,7 @@ except ModuleNotFoundError:
 
 # Selection of the hyperparameters by taking the ones with the best validation scores
 
-n_tr, n_val = 3000, 600  # 3000 - 600 = 2400 train / 600 val
+n_tr, n_val = 3000, 20  # 3000 - 600 = 2400 train / 600 val
 n_c_max = 1e6  # do not consider test points with more than n_c_max candidates
 
 
@@ -82,7 +82,7 @@ try:
     np.save(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_Sfgw.npy', Sfgw)
     np.save(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_Stopk.npy', Stopk)
 except FileNotFoundError:
-    path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/Results/"
+    path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/Results/"
     np.save(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_Grid.npy', Grid)
     np.save(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_Sfgw.npy', Sfgw)
     np.save(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_Stopk.npy', Stopk)

@@ -71,42 +71,6 @@ def normalize_gram_matrix(K, K_tr_tr=None, K_te_te=None):
     return K_normalized
 
 
-def load_candidates(formula, n_max, random=False):
-
-    # load candidates for a given molecular formula
-    path_to_candidates = 'Implementation/Code/OEL/OEL/Data/Data_metabolites/Candidats/'
-
-    try:
-        with open(path_to_candidates + formula + '.csv') as f:
-            candidates = f.readlines()
-    except FileNotFoundError:
-        return -1, -1
-    # return error if too many candidates or zero candidate
-    if len(candidates) == 0 or len(candidates) > n_max:
-        return -1, -1
-
-    # Parse load data to compute lists of inchikeys and fingerprints
-    fingerprints = []  # will contain the fingerprints of the candidates
-    inchikey_fingerprints = []  # will contain the inchikey of the candidates
-    if random is False:
-        for c in range(len(candidates)):
-            inchikey_fingerprints.append(candidates[c].split('\t')[0])
-            f = np.zeros(7593).astype(int)
-            f[np.array(candidates[c].split('\t')[1:]).astype(int)] = 1
-            fingerprints.append(f)
-
-    else:
-        random_idx = np.random.randint(len(candidates))
-        inchikey_fingerprints.append(candidates[random_idx].split('\t')[0])
-        f = np.zeros(7593).astype(int)
-        f[np.array(candidates[random_idx].split('\t')[1:]).astype(int)] = 1
-        fingerprints.append(f)
-
-    cf = np.array(fingerprints)
-
-    return cf, inchikey_fingerprints
-
-
 def gaussian_tani_kernel(Y, Z, g):
 
     scalar_products = Y.dot(Z.T)

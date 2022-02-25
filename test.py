@@ -7,7 +7,7 @@ try:
     method = 'finger'
 except ModuleNotFoundError:
     import sys
-    sys.path.insert(0, '/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite')
+    sys.path.insert(0, '/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein')
     import numpy as np
     from time import time
     from train_val import exp_finger, exp_gk, exp_gw_onehot, exp_gw_fine, exp_gw_diffuse
@@ -26,7 +26,7 @@ try:
     Sfgw = np.load(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_Sfgw.npy')
     Stopk = np.load(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_Stopk.npy')
 except FileNotFoundError:
-    path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/Results/"
+    path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/Results/"
     Grid = np.load(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_Grid.npy')
     Sfgw = np.load(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_Sfgw.npy')
     Stopk = np.load(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_Stopk.npy')
@@ -76,5 +76,5 @@ try:
     path = "Results/"
     np.save(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_test.npy', R)
 except FileNotFoundError:
-    path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/Results/"
+    path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/Results/"
     np.save(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_test.npy', R)

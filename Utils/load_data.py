@@ -15,7 +15,7 @@ def build_spec():
         path = "Data/"
         L = listdir(path + 'data_new/spectra-2')
     except (FileNotFoundError, OSError):
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/Data/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/Data/"
         L = listdir(path + 'data_new/spectra-2')
 
     Spectra = []
@@ -29,7 +29,7 @@ def build_spec():
             except UnicodeDecodeError:
                 print(f"FILENAME = {filename}")
         except (FileNotFoundError, OSError):
-            path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/Data/"
+            path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/Data/"
             try:
                 with open(path + 'data_new/spectra-2/' + filename) as f:
                     lines = f.readlines()
@@ -51,7 +51,7 @@ def build_spec():
     try:
         np.save('Data/data_new/spectra.npy', Spectra, allow_pickle=True)
     except (FileNotFoundError, OSError):
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/Data/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/Data/"
         np.save(path + 'data_new/spectra.npy', Spectra, allow_pickle=True)
 
 
@@ -72,7 +72,8 @@ def load_spec_inchi():
             except UnicodeDecodeError:
                 print(f"FILENAME = {filename}")
         except (FileNotFoundError, OSError):
-            path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/Data/"
+            path = "/tsi/clusterhome/lmotte/Implementation/" \
+                   "metabolite-identification-with-fused-gromov-wasserstein/Data/"
             try:
                 with open(path + 'data_new/spectra-2/' + filename) as f:
                     lines = f.readlines()
@@ -84,7 +85,7 @@ def load_spec_inchi():
     try:
         Spec_load = np.load('Data/data_new/spectra.npy', allow_pickle=True)
     except (FileNotFoundError, OSError):
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/Data/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/Data/"
         Spec_load = np.load(path + 'data_new/spectra.npy', allow_pickle=True)
 
     for s in Spec_load:
@@ -147,7 +148,7 @@ def build_spectrum_graph_dataset():
     try:
         mat = scipy.io.loadmat('Data/data_new/data_GNPS.mat')
     except (FileNotFoundError, OSError):
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/Data/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/Data/"
         mat = scipy.io.loadmat(path + 'data_new/data_GNPS.mat')
 
     In = [inch[0][0] for inch in mat['inchi']]
@@ -169,7 +170,7 @@ def build_spectrum_graph_dataset():
         with open('Data/data_new/output_graphs.pickle', 'wb') as handle:
             pk.dump(Y, handle)
     except (FileNotFoundError, OSError):
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/Data/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/Data/"
         with open(path + 'data_new/output_graphs.pickle', 'wb') as handle:
             pk.dump(Y, handle)
 
@@ -183,7 +184,7 @@ def load_dataset_graph(n):
         with open('Data/data_new/output_graphs.pickle', 'rb') as handle:
             Y = pk.load(handle)
     except (FileNotFoundError, OSError):
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/"
 
         with open(path + 'Data/data_new/output_graphs.pickle', 'rb') as handle:
             Y = pk.load(handle)
@@ -191,7 +192,7 @@ def load_dataset_graph(n):
     try:
         Spectra = np.load('Data/data_new/spec_bin.npy')
     except FileNotFoundError:
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/"
         Spectra = np.load(path + 'Data/data_new/spec_bin.npy')
 
     # Divide train/test
@@ -246,7 +247,7 @@ def load_dataset_kernel_graph(n):
         K = np.loadtxt('Data/data_new/input_kernels/PPKr.txt')
     except (FileNotFoundError, OSError):
 
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/"
         K = np.loadtxt(path + 'Data/data_new/input_kernels/PPKr.txt')
 
     try:
@@ -254,7 +255,7 @@ def load_dataset_kernel_graph(n):
             Y = pk.load(handle)
     except (FileNotFoundError, OSError):
 
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/"
 
         with open(path + 'Data/data_new/output_graphs.pickle', 'rb') as handle:
             Y = pk.load(handle)
@@ -283,7 +284,7 @@ def load_candidate_inchi(mf):
     try:
         mat = scipy.io.loadmat(f'Data/data_new/candidates/candidate_set_{mf}.mat')
     except FileNotFoundError:
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/"
         mat = scipy.io.loadmat(path + f'Data/data_new/candidates/candidate_set_{mf}.mat')
 
     In = [inch[0][0] for inch in mat['inchi']]
@@ -296,14 +297,14 @@ def load_dataset_kernel_finger(n):
     try:
         K = np.loadtxt('Data/data_new/input_kernels/PPKr.txt')
     except (FileNotFoundError, OSError):
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/"
         K = np.loadtxt(path + 'Data/data_new/input_kernels/PPKr.txt')
 
     try:
         with open('Data/data_new/output_graphs.pickle', 'rb') as handle:
             Y = pk.load(handle)
     except (FileNotFoundError, OSError):
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/"
 
         with open(path + 'Data/data_new/output_graphs.pickle', 'rb') as handle:
             Y = pk.load(handle)
@@ -311,7 +312,7 @@ def load_dataset_kernel_finger(n):
     try:
         mat = scipy.io.loadmat('Data/data_new/data_GNPS.mat')
     except (FileNotFoundError, OSError):
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/"
         mat = scipy.io.loadmat(path + 'Data/data_new/data_GNPS.mat')
 
     Fingers = mat['fp'].T
@@ -341,7 +342,7 @@ def load_candidate_finger(mf):
     try:
         mat = scipy.io.loadmat(f'Data/data_new/candidates/candidate_set_{mf}.mat')
     except (FileNotFoundError, OSError):
-        path = "/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite/"
+        path = "/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein/"
         mat = scipy.io.loadmat(path + f'Data/data_new/candidates/candidate_set_{mf}.mat')
 
     In = [inch[0][0] for inch in mat['inchi']]

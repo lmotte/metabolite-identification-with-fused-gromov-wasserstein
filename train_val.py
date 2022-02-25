@@ -8,7 +8,7 @@ try:
     from Utils.diffusion import diffuse
 except ModuleNotFoundError:
     import sys
-    sys.path.insert(0, '/tsi/clusterhome/lmotte/Implementation/GwMetabolite/GW_metabolite')
+    sys.path.insert(0, '/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein')
     from time import time
     from Methods.method_gromov_wasserstein import FgwEstimator
     from Methods.method_graph_kernel import GraphKernelEstimator
