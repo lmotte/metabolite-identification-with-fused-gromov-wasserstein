@@ -182,7 +182,7 @@ def exp_gk(n_tr, n_val, L, h, n_bary, n_c_max):
     return fgw[0], topk, n, n_pred
 
 
-def exp_finger(n_tr, n_val, L, g, n_bary, n_c_max):
+def exp_finger(n_tr, n_val, L, g, unused, n_c_max):
 
     # Load data
     t0 = time()
@@ -215,7 +215,7 @@ def exp_finger(n_tr, n_val, L, g, n_bary, n_c_max):
     # Predict
     t0 = time()
     n_bary = n_tr
-    fgw, topk, n_pred = clf.predict(K_tr_te, n_bary=n_bary, Y_te=Y_te, n_c_max=n_c_max)
+    fgw, topk, n_pred = clf.predict(K_tr_te, Y_te=Y_te, n_c_max=n_c_max)
     print(f'Test time: {time() - t0}', flush=True)
 
     print(f'{(n_tr, n_val, L, g, n_bary, n_c_max)}, mean fgw : {fgw}, topk = {topk}', flush=True)
