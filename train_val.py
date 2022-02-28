@@ -54,7 +54,7 @@ def exp_gw_onehot(n_tr, n_val, L, unused, n_bary, n_c_max):
     fgw, topk, n_pred = clf.predict(K_tr_te, n_bary=n_bary, Y_te=Y_te, n_c_max=n_c_max)
     print(f'Test time: {time() - t0}', flush=True)
 
-    print(f'mean fgw : {fgw}, topk = {topk}', flush=True)
+    print(f'{(n_tr, n_val, L, None, n_bary, n_c_max)}, mean fgw : {fgw}, topk = {topk}', flush=True)
 
     return fgw[0], topk, n, n_pred
 
@@ -95,7 +95,7 @@ def exp_gw_fine(n_tr, n_val, L, w, n_bary, n_c_max):
     fgw, topk, n_pred = clf.predict(K_tr_te, n_bary=n_bary, Y_te=Y_te, n_c_max=n_c_max)
     print(f'Test time: {time() - t0}', flush=True)
 
-    print(f'mean fgw : {fgw}, topk = {topk}', flush=True)
+    print(f'{(n_tr, n_val, L, w, n_bary, n_c_max)}, mean fgw : {fgw}, topk = {topk}', flush=True)
 
     return fgw[0], topk, n, n_pred
 
@@ -137,7 +137,7 @@ def exp_gw_diffuse(n_tr, n_val, L, tau, n_bary, n_c_max):
     fgw, topk, n_pred = clf.predict(K_tr_te, n_bary=n_bary, Y_te=Y_te, n_c_max=n_c_max)
     print(f'Test time: {time() - t0}', flush=True)
 
-    print(f'mean fgw : {fgw}, topk = {topk}', flush=True)
+    print(f'{(n_tr, n_val, L, tau, n_bary, n_c_max)}, mean fgw : {fgw}, topk = {topk}', flush=True)
 
     return fgw[0], topk, n, n_pred
 
@@ -177,7 +177,7 @@ def exp_gk(n_tr, n_val, L, h, n_bary, n_c_max):
     fgw, topk, n_pred = clf.predict(K_tr_te, n_bary=n_bary, Y_te=Y_te, n_c_max=n_c_max)
     print(f'Test time: {time() - t0}', flush=True)
 
-    print(f'mean fgw : {fgw}, topk = {topk}', flush=True)
+    print(f'{(n_tr, n_val, L, h, n_bary, n_c_max)}, mean fgw : {fgw}, topk = {topk}', flush=True)
 
     return fgw[0], topk, n, n_pred
 
@@ -218,6 +218,6 @@ def exp_finger(n_tr, n_val, L, g, n_bary, n_c_max):
     fgw, topk, n_pred = clf.predict(K_tr_te, n_bary=n_bary, Y_te=Y_te, n_c_max=n_c_max)
     print(f'Test time: {time() - t0}', flush=True)
 
-    print(f'mean fgw : {fgw}, topk = {topk}', flush=True)
+    print(f'{(n_tr, n_val, L, g, n_bary, n_c_max)}, mean fgw : {fgw}, topk = {topk}', flush=True)
 
     return fgw[0], topk, n, n_pred
