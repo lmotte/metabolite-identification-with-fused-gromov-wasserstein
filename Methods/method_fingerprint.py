@@ -1,6 +1,7 @@
 import numpy as np
 import ot
 from Utils.load_data import load_candidate_finger, inchi_to_graph
+from Utils.metabolites_utils import gaussian_tani_kernel
 from time import time
 
 
@@ -27,17 +28,18 @@ class IOKREstimator:
 
     def train_candidate_kernel(self, F_c, F_tr):
 
-        scalar_products = F_tr.toarray().dot(F_c.toarray().T)
-        Y_norms = np.linalg.norm(F_tr.toarray(), axis=1) ** 2
-        Z_norms = np.linalg.norm(F_c.toarray(), axis=1) ** 2
-        nomi = scalar_products
-        K_tr_c = Y_norms.reshape(-1, 1) + Z_norms.reshape(1, -1) - scalar_products
+        # scalar_products = F_tr.toarray().dot(F_c.toarray().T)
+        # Y_norms = np.linalg.norm(F_tr.toarray(), axis=1) ** 2
+        # Z_norms = np.linalg.norm(F_c.toarray(), axis=1) ** 2
+        # nomi = scalar_products
+        # K_tr_c = Y_norms.reshape(-1, 1) + Z_norms.reshape(1, -1) - scalar_products
+        # K_tr_c = - K_tr_c
 
-        # K_tr_c = gaussian_tani_kernel(F_tr.toarray(), F_c.toarray(), g=self.g)
+        K_tr_c = gaussian_tani_kernel(F_tr.toarray(), F_c.toarray(), g=self.g)
 
-        return - K_tr_c
+        return K_tr_c
 
-    def predict(self, K_tr_te, n_bary, Y_te, n_c_max=200):
+    def predict(self, K_tr_te, Y_te, n_c_max=200):
 
         n_te = K_tr_te.shape[1]
         A = self.M.dot(K_tr_te)
@@ -53,7 +55,7 @@ class IOKREstimator:
 
             # predict weights and take greatest weight graphs
             lambdas = A[:, i]
-            idxs = np.argsort(lambdas)[-n_bary:]
+            idxs = np.argsort(lambdas)
             lambdas = [A[j, i] for j in idxs]
 
             # load candidate
