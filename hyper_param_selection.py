@@ -18,7 +18,7 @@ except ModuleNotFoundError:
 
 # Selection of the hyperparameters by taking the ones with the best validation scores
 
-n_tr, n_val = 3000, 20  # 3000 - 600 = 2400 train / 600 val
+n_tr, n_val = 3000, 600  # 3000 - 600 = 2400 train / 600 val
 n_c_max = 1e6  # do not consider test points with more than n_c_max candidates
 
 
