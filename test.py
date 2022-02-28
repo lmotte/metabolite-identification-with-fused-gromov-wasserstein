@@ -19,7 +19,7 @@ except ModuleNotFoundError:
 # Load validation scores and the associated hyperparameters grids
 n_tr, n_val = 3000, 600
 n_bary = 5
-n_c_max = 500
+n_c_max = 1e6
 try:
     path = "Results/"
     Grid = np.load(path + method + '_' + f'{n_tr}_{n_val}_{n_bary}_{n_c_max}_Grid.npy',)
@@ -51,7 +51,7 @@ L, param = bestparam1
 
 # Train and Compute test score
 n_tr, n_val = 4145, 1145  # 4145 - 1145 = 3000 train / 1145 test
-n_c_max = 500  # do not consider test points with more than n_c_max candidates
+n_c_max = 1e6  # do not consider test points with more than n_c_max candidates
 
 if method == 'finger':
     exp = exp_finger
