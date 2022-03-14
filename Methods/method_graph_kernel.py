@@ -1,5 +1,6 @@
 import ot
 import numpy as np
+import scipy as sp
 from time import time
 from scipy.sparse import csr_matrix
 from Utils.load_data import load_candidate_inchi, inchi_to_graph
@@ -33,7 +34,7 @@ class GraphKernelEstimator:
 
         Phi1, Phi2 = self.WLkernel([Cs, Features], Y_c)
         D = Phi1.dot(Phi2.T)
-        norms_c = np.linalg.norm(Phi2, axis=1) ** 2
+        norms_c = sp.sparse.linalg.norm(Phi2, axis=1) ** 2
 
         return D, norms_c
 
