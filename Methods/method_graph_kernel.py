@@ -1,7 +1,8 @@
-import numpy as np
 import ot
-from Utils.load_data import load_candidate_inchi, inchi_to_graph
+import numpy as np
 from time import time
+from scipy.sparse import csr_matrix
+from Utils.load_data import load_candidate_inchi, inchi_to_graph
 
 
 class GraphKernelEstimator:
@@ -88,7 +89,7 @@ class GraphKernelEstimator:
             D, norms_c = self.train_candidate_graphkernel(Y_c, Cs, Features)
             score = 2 * D.T.dot(lambdas) - norms_c
 
-            print(f'{i}: Computation time GW distances n_c x n_tr = {n_c} x {len(lambdas)}: {time() - t0} s')
+            print(f'{i}: Computation time GK distances n_c x n_tr = {n_c} x {len(lambdas)}: {time() - t0} s')
 
             # predict
             idx_sorted = np.argsort(score)
@@ -219,10 +220,8 @@ class GraphKernelEstimator:
 
             Phi.append(WL_feature)
 
-        # Compute scalar product
-        Phi1 = np.array(Phi[: n1])
-        Phi2 = np.array(Phi[n1:])
-
+        Phi1 = csr_matrix(Phi[: n1])
+        Phi2 = csr_matrix(Phi[n1:])
         print(f'Representation dimension: {Phi1.shape[1]}')
 
         return Phi1, Phi2
