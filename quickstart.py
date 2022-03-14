@@ -6,8 +6,6 @@ try:
     from Methods.method_gromov_wasserstein import FgwEstimator
     from Utils.diffusion import diffuse
     from multiprocessing import Pool
-    cluster = False
-    method = 'finger'
 except ModuleNotFoundError:
     import sys
     sys.path.insert(0, '/tsi/clusterhome/lmotte/Implementation/metabolite-identification-with-fused-gromov-wasserstein')
@@ -18,8 +16,6 @@ except ModuleNotFoundError:
     from Methods.method_gromov_wasserstein import FgwEstimator
     from Utils.diffusion import diffuse
     from multiprocessing import Pool
-    cluster = True
-    method = sys.argv[1]
 
 
 # 1) Load data
