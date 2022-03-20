@@ -63,6 +63,7 @@ elif method == 'gw_diffuse':
     exp = exp_gw_diffuse
 elif method == 'gk':
     exp = exp_gk
+    param = int(param)
 else:
     exp, param = None, None
 
