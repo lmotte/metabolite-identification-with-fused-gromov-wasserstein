@@ -93,6 +93,7 @@ def load_spec_inchi():
 
     return Spectra, Inc
 
+
 def inchi_to_graph(inc):
 
     m = rdkit.Chem.inchi.MolFromInchi(inc)
@@ -136,10 +137,6 @@ def inchi_to_graph(inc):
         P.append(c.GetPositions())
 
     return C, np.array(F), P
-
-
-def inchi_to_fingerprint(inc):
-    pass
 
 
 def build_spectrum_graph_dataset():
