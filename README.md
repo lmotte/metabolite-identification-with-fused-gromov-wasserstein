@@ -41,7 +41,7 @@ from Utils.diffusion import diffuse
 clf = FgwEstimator()
 clf.ground_metric = 'diffuse'
 L = 1e-4  # kernel ridge regularization parameter
-clf.tau = 0.6  # the bigger tau is the more the neighbor atoms have similar feature. This impact the FGW's ground metric.
+clf.tau = 0.6  # the bigger tau is the more the neighbor atoms have similar feature. This impacts the FGW's ground metric.
 Y_Tr = diffuse(Y_tr, clf.tau)
 clf.train(K_tr, Y_tr, L)
 ```
@@ -57,12 +57,12 @@ You should obtain the following results:
 
 - Mean FGW = 0.14209778 ± 0.0460629.
 - Top-1 = 32.6%, Top-10 = 62.7%, Top-20 = 72.5%.
-- Number of prediction = 448.
+- Number of predictions = 448.
 
 
 ## Reproducing the experiments in [[1]](#references)
 
-[Brogat-Motte et al., 2022](#references) (Section 6.2) experimentally assess the benefit of different ground metrics between atoms when used in the fused Gromov-Wasserstein distance between molecules ([Vayer et al., 2020](#references)).
+[Brogat-Motte et al., 2022 (Section 6.2)](#references) experimentally assess the performance of fused Gromov-Wasserstein barycenter for predicting metabolites from mass spectra. In particular, a comparison of the prediction performance of different ground metrics between atoms used in the fused Gromov-Wasserstein distance between molecules ([Vayer et al., 2020](#references)) is carried out.
 
 These experiments can be reproduced in two steps: 1) hyperparameters selection, 2) test the methods using the selected hyperparameters. It is possible to run directly the step 2).
 
@@ -80,7 +80,7 @@ python test.py method
 ```
 The results are saved in the folder "Results", where one can already find saved results.
 
-The top-k accuracies obtained on the test data are given in the following table.
+The Top-k accuracies obtained on the test data are given in the following table.
 
 <center>
 
