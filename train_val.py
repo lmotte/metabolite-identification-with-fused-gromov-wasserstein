@@ -13,7 +13,6 @@ except ModuleNotFoundError:
     from Methods.method_gromov_wasserstein import FgwEstimator
     from Methods.method_graph_kernel import GraphKernelEstimator
     from Methods.method_fingerprint import IOKREstimator
-    # from method_gw_bary_before import FgwEstimatorBefore
     from Utils.metabolites_utils import center_gram_matrix, normalize_gram_matrix
     from Utils.load_data import load_dataset_kernel_graph, load_dataset_kernel_finger
     from Utils.diffusion import diffuse

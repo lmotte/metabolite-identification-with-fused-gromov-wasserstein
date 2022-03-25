@@ -28,9 +28,6 @@ class GraphKernelEstimator:
     def train_candidate_graphkernel(self, Y_c, Cs, Features):
 
         Cs_cand, Ls_cand, _, _ = Y_c
-        n_c = len(Cs_cand)
-        n_tr = len(Features)
-        D = np.zeros((n_tr, n_c))
 
         Phi1, Phi2 = self.WLkernel([Cs, Features], Y_c)
         D = Phi1.dot(Phi2.T)

@@ -3,9 +3,11 @@ This repository contains a Python implementation of the supervised graph predict
 
 ## Metabolite identification problem
 
-An important problem in metabolomics is to identify the small molecules, called metabolites, that are present in a biological sample. Mass spectrometry is a widespread method to extract distinctive features from a biological sample in the form of a tandem mass (MS/MS) spectrum. The goal of this problem is to predict the molecular structure of a metabolite given its tandem mass spectrum.
+An important problem in metabolomics is to identify the small molecules, called metabolites, that are present in a biological sample. Mass spectrometry is a widespread method to extract distinctive features from a biological sample in the form of a tandem mass (MS/MS) spectrum. 
 
-**Dataset.** The data are available for download from https://zenodo.org/record/804241#.Yi9bzS_pNhE. It consists in a set of 4138 labeled data used in [[2]](#references) to evaluate the performance of metabolite identification from tandem mass spectra. These data have been extracted and processed in [[3]](#references).  It consists in 4138 MS/MS spectra extracted from the GNPS public spectral library (https://gnps.ucsd.edu/ProteoSAFe/libraries.jsp). The candidate sets have been build with molecular structures from PubChem.
+Various machine learning methods have been proposed to solve this problem by learning to predict metabolites from mass spectra thanks to a training data set of couples (mass spectrum, molecular structure). This problem belongs to the challenging family of structured prediction learning problems.
+
+**Dataset.** The data used in [[1]](#references) are available for download from https://zenodo.org/record/804241#.Yi9bzS_pNhE. It consists in a set of 4138 labeled data also used in [[2]](#references) to evaluate the performance of metabolite identification from tandem mass spectra. These data have been extracted and processed in [[3]](#references).  The MS/MS spectra have been extracted from the GNPS public spectral library (https://gnps.ucsd.edu/ProteoSAFe/libraries.jsp). The candidate sets have been build with molecular structures from PubChem.
 
 ## Quick start
 
