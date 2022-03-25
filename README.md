@@ -3,9 +3,11 @@ This repository contains a Python implementation of the supervised graph predict
 
 ## Metabolite identification problem
 
-An important problem in metabolomics is to identify the small molecules, called metabolites, that are present in a biological sample. Mass spectrometry is a widespread method to extract distinctive features from a biological sample in the form of a tandem mass (MS/MS) spectrum. The goal of this problem is to predict the molecular structure of a metabolite given its tandem mass spectrum.
+An important problem in metabolomics is to identify the small molecules, called metabolites, that are present in a biological sample. Mass spectrometry is a widespread method to extract distinctive features from a biological sample in the form of a tandem mass (MS/MS) spectrum. 
 
-**Dataset.** The data are available for download from https://zenodo.org/record/804241#.Yi9bzS_pNhE. It consists in a set of 4138 labeled data used in [[2]](#references) to evaluate the performance of metabolite identification from tandem mass spectra. These data have been extracted and processed in [[3]](#references).  It consists in 4138 MS/MS spectra extracted from the GNPS public spectral library (https://gnps.ucsd.edu/ProteoSAFe/libraries.jsp). The candidate sets have been build with molecular structures from PubChem.
+Various machine learning methods have been proposed to solve this problem by learning to predict metabolites from mass spectra thanks to a training data set of couples (mass spectrum, molecular structure). This problem belongs to the challenging family of structured prediction learning problems.
+
+**Dataset.** The data used in [[1]](#references) are available for download from https://zenodo.org/record/804241#.Yi9bzS_pNhE. It consists in a set of 4138 labeled data also used in [[2]](#references) to evaluate the performance of metabolite identification from tandem mass spectra. These data have been extracted and processed in [[3]](#references).  The MS/MS spectra have been extracted from the GNPS public spectral library (https://gnps.ucsd.edu/ProteoSAFe/libraries.jsp). The candidate sets have been build with molecular structures from PubChem.
 
 ## Quick start
 
@@ -41,7 +43,7 @@ from Utils.diffusion import diffuse
 clf = FgwEstimator()
 clf.ground_metric = 'diffuse'
 L = 1e-4  # kernel ridge regularization parameter
-clf.tau = 0.6  # the bigger tau is the more the neighbor atoms have similar feature. This impact the FGW's ground metric.
+clf.tau = 0.6  # the bigger tau is the more the neighbor atoms have similar feature. This impacts the FGW's ground metric.
 Y_Tr = diffuse(Y_tr, clf.tau)
 clf.train(K_tr, Y_tr, L)
 ```
@@ -57,12 +59,12 @@ You should obtain the following results:
 
 - Mean FGW = 0.14209778 ± 0.0460629.
 - Top-1 = 32.6%, Top-10 = 62.7%, Top-20 = 72.5%.
-- Number of prediction = 448.
+- Number of predictions = 448.
 
 
 ## Reproducing the experiments in [[1]](#references)
 
-[Brogat-Motte et al., 2022](#references) (Section 6.2) experimentally assess the benefit of different ground metrics between atoms when used in the fused Gromov-Wasserstein distance between molecules ([Vayer et al., 2020](#references)).
+[Brogat-Motte et al., 2022 (Section 6.2)](#references) experimentally assess the performance of fused Gromov-Wasserstein barycenter for predicting metabolites from mass spectra. In particular, a comparison of the prediction performance of different ground metrics between atoms used in the fused Gromov-Wasserstein distance between molecules ([Vayer et al., 2020](#references)) is carried out.
 
 These experiments can be reproduced in two steps: 1) hyperparameters selection, 2) test the methods using the selected hyperparameters. It is possible to run directly the step 2).
 
@@ -80,7 +82,7 @@ python test.py method
 ```
 The results are saved in the folder "Results", where one can already find saved results.
 
-The top-k accuracies obtained on the test data are given in the following table.
+The Top-k accuracies obtained on the test data are given in the following table.
 
 <center>
 

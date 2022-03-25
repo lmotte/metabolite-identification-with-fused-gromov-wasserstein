@@ -28,13 +28,6 @@ class IOKREstimator:
 
     def train_candidate_kernel(self, F_c, F_tr):
 
-        # scalar_products = F_tr.toarray().dot(F_c.toarray().T)
-        # Y_norms = np.linalg.norm(F_tr.toarray(), axis=1) ** 2
-        # Z_norms = np.linalg.norm(F_c.toarray(), axis=1) ** 2
-        # nomi = scalar_products
-        # K_tr_c = Y_norms.reshape(-1, 1) + Z_norms.reshape(1, -1) - scalar_products
-        # K_tr_c = - K_tr_c
-
         K_tr_c = gaussian_tani_kernel(F_tr.toarray(), F_c.toarray(), g=self.g)
 
         return K_tr_c
